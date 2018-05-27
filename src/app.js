@@ -10,12 +10,30 @@ console.log("App.js is running!");
 // if options.length > 0 "Here are your options" else "No options" new paragraph tag below 
 // subtitle - ternary operator would be a great fit
 
+
+
 const app = {
     title: "Indecision App",
     subTitle: "Put your life in your computer's hands!",
-    options: ["One", "Two"]
+    options: []
 }
 
+const onFormSubmit = (e) => {
+    e.preventDefault(); //stops full page refresh to just handle the event
+    
+    const option = e.target.elements.option.value;
+
+    if (option) {
+        app.options.push(option);
+        e.target.elements.option.value = "";
+        renderMe();
+    }
+};
+
+const makeZero = () => {
+    app.options = [];
+    renderMe();
+};
 
 //JSX - JavaScript XML - a JavaScript syntax "extension" provided by REACT
 const template = (
@@ -23,47 +41,51 @@ const template = (
     <h1>{app.title}</h1>
     {app.subTitle && <p>{app.subTitle}</p>}
     <p>{app.options.length > 0 ? "Here are your options" : "No options"}</p>
+    <p>{app.options.length}</p>
     <ol>
     <li>Item one</li>
     <li>Item two</li>
     </ol>
+    <form onSubmit={onFormSubmit}>
+        <input type="text" name="option"/>
+        <button>Add Option</button>
+    </form>
 </div>
 );
 
-// Challenge
-// Make button "-1" - setup minusOne function and register - log "minusOne" everytime button is clicked
-// Make reset button "reset" - setup reset function - log "reset"
 
-let count = 0;
-const addOne = () => {
-    count++;
-    renderCounterApp();
-};
-
-const minusOne = () => {
-    count--;
-    renderCounterApp();
-};
-
-const reset = () => {
-    count = 0;
-    renderCounterApp();
-};
-
+// create "Remove All" button above list
+// on click -> wipe the array -> rerender
 
 const appRoot = document.getElementById("app");
 
-const renderCounterApp = () => {
-    const templateTwo = (
-        <div>
-            <h1>Count: {count}</h1>
-            <button onClick={addOne}>+1</button>
-            <button onClick={minusOne}>-1</button>
-            <button onClick={reset}>reset</button>
-        </div>
+ReactDOM.render(template, appRoot);
+
+const renderMe = () => {
+//JSX - JavaScript XML - a JavaScript syntax "extension" provided by REACT
+const template = (
+    <div>
+        <h1>{app.title}</h1>
+        {app.subTitle && <p>{app.subTitle}</p>}
+        <p>{app.options.length > 0 ? "Here are your options" : "No options"}</p>
+        <p>{app.options.length}</p>
+        <button onClick={makeZero}>Remove All</button>
+        <ol>
+        <li>Item one</li>
+        <li>Item two</li>
+        </ol>
+        <form onSubmit={onFormSubmit}>
+            <input type="text" name="option"/>
+            <button>Add Option</button>
+        </form>
+    </div>
     );
 
-    ReactDOM.render(templateTwo, appRoot);
-};
+    ReactDOM.render(template, appRoot);
+} ;
 
-renderCounterApp();
+renderMe();
+
+// Create a render function that renders the new jsx
+// Call it right away
+// Call it after options array is added to
