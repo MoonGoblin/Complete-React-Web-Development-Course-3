@@ -35,57 +35,35 @@ const makeZero = () => {
     renderMe();
 };
 
-//JSX - JavaScript XML - a JavaScript syntax "extension" provided by REACT
-const template = (
-<div>
-    <h1>{app.title}</h1>
-    {app.subTitle && <p>{app.subTitle}</p>}
-    <p>{app.options.length > 0 ? "Here are your options" : "No options"}</p>
-    <p>{app.options.length}</p>
-    <ol>
-    <li>Item one</li>
-    <li>Item two</li>
-    </ol>
-    <form onSubmit={onFormSubmit}>
-        <input type="text" name="option"/>
-        <button>Add Option</button>
-    </form>
-</div>
-);
-
-
+// Create a render function that renders the new jsx
+// Call it right away
+// Call it after options array is added to
 // create "Remove All" button above list
 // on click -> wipe the array -> rerender
 
 const appRoot = document.getElementById("app");
 
-ReactDOM.render(template, appRoot);
-
 const renderMe = () => {
 //JSX - JavaScript XML - a JavaScript syntax "extension" provided by REACT
-const template = (
-    <div>
-        <h1>{app.title}</h1>
-        {app.subTitle && <p>{app.subTitle}</p>}
-        <p>{app.options.length > 0 ? "Here are your options" : "No options"}</p>
-        <p>{app.options.length}</p>
-        <button onClick={makeZero}>Remove All</button>
-        <ol>
-        <li>Item one</li>
-        <li>Item two</li>
-        </ol>
-        <form onSubmit={onFormSubmit}>
-            <input type="text" name="option"/>
-            <button>Add Option</button>
-        </form>
-    </div>
+    const template = (
+        <div>
+            <h1>{app.title}</h1>
+            {app.subTitle && <p>{app.subTitle}</p>}
+            <p>{app.options.length > 0 ? "Here are your options" : "No options"}</p>
+            <p>{app.options.length}</p>
+            <button onClick={makeZero}>Remove All</button>
+            <ol>
+            <li>Item one</li>
+            <li>Item two</li>
+            </ol>
+            <form onSubmit={onFormSubmit}>
+                <input type="text" name="option"/>
+                <button>Add Option</button>
+            </form>
+        </div>
     );
 
     ReactDOM.render(template, appRoot);
 } ;
 
 renderMe();
-
-// Create a render function that renders the new jsx
-// Call it right away
-// Call it after options array is added to
