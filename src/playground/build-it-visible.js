@@ -25,7 +25,7 @@ const renderMe = () => {
         <div>
             <h1>Visibility Toggle</h1>
             <button onClick={changeIt}>{visibility ? "Hide details" : "Show details"}</button>
-            <p>{visibility && (<p>Here's the hidden content!!</p>)}</p>          
+            <p>{visibility && (<p>Here is the hidden content!!</p>)}</p>          
         </div>
     );
     
