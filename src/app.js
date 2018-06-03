@@ -1,3 +1,19 @@
+class IndecisionApp extends React.Component {
+    render() {
+        return (
+            <div>
+                <Header />
+                <Action />
+                <Options />
+                <AddOption />
+            </div>
+        );
+    }
+
+}
+
+
+
 class Header extends React.Component {
     render() {
         return (
@@ -20,22 +36,31 @@ class Action extends React.Component {
 }
 
 
-// Challenge
-// Options class will contain a list of all the available options
-// Options -> render static text - "Options component here"
-
 class Options extends React.Component {
     render() {
         return (
             <div>
                 <p>Options component here</p>
+                <Option />
             </div>
         );
     }
 }
 
-// Add Option Component - will have our form
-// AddOption -> static text - AddOption component here
+// Challenge
+// Option -> static test: Option component here
+// Will be nested in Options component
+
+class Option extends React.Component {
+    render() {
+        return (
+            <div>
+                <p>Option component here</p>
+            </div>
+        );
+    }
+}
+
 
 class AddOption extends React.Component {
     render() {
@@ -48,15 +73,7 @@ class AddOption extends React.Component {
 }
 
 
-const jsx = (
-    <div>
-        <Header />
-        <Action />
-        <Options />
-        <AddOption />
-    </div>
-);
 
 
 
-ReactDOM.render(jsx, document.getElementById("app"));
+ReactDOM.render(<IndecisionApp />, document.getElementById("app"));
