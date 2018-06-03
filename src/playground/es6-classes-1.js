@@ -25,17 +25,34 @@ class Person {
     }
 
     getDescription() {
-        return `${this.name} is ${this.age} years old`
+        return `${this.name} is ${this.age} years old.`
     }
+}
 
+class Student extends Person {
+    constructor(name, age, major) {
+        super(name, age); //Calls parent class constructor function
+        this.major = major;
+    }
+    hasMajor() {
+        return  !!this.major; //We are flipping twice to return true or false that you have it or not
+    }
+    getDescription() {
+        //We are overriding this method that is in the parent class
+        let description = super.getDescription();
+
+        if(this.hasMajor()) {
+            description = description += ` Their major is ${this.major}.`
+        }
+
+        return description;
+    }
 }
 
 
-const me = new Person("David Rytell", 50);
-console.log(me.getGreeting());
+const me = new Student("David Rytell", 50, "Computer Science");
+const other = new Student();
 
-const other = new Person();
-console.log(other.getGreeting());
 
 
 //
