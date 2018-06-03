@@ -8,7 +8,7 @@ class IndecisionApp extends React.Component {
             <div>
                 <Header title={title} subtitle={subtitle} />
                 <Action />
-                <Options />
+                <Options options={options} />
                 <AddOption />
             </div>
         );
@@ -39,21 +39,29 @@ class Action extends React.Component {
     }
 }
 
+// Chalenge
+// Setup options prop for Options component
+// Render the length of the array
+// Render new p tag for each option (set text, set key)
 
 class Options extends React.Component {
     render() {
+
         return (
             <div>
-                <p>Options component here</p>
+                <p>Options component here. The length is {this.props.options.length}</p>
                 <Option />
+                {
+                    this.props.options.map((option) => {
+                        return <p key={option}>{option}</p>
+                    })
+                }
             </div>
         );
     }
 }
 
-// Challenge
-// Option -> static test: Option component here
-// Will be nested in Options component
+
 
 class Option extends React.Component {
     render() {
