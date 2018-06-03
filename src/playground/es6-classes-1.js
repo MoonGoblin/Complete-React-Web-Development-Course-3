@@ -21,7 +21,7 @@ class Person {
 
     getGreeting() {
         //return "Hi. I am " + this.name + "!";
-        return `Hi. I am ${this.name}`; // From ES6: Called a template name with back-tick
+        return `Hi. I am ${this.name}.`; // From ES6: Called a template name with back-tick
     }
 
     getDescription() {
@@ -49,12 +49,36 @@ class Student extends Person {
     }
 }
 
+// Challenge
+// Extend the Person class with a Traveler class
+// Traveler -> Person
+// Add support for homeLocation
+// Override getGreeting
+// 1. Home location -> "Hi. I am Andrew Mead. I'm visiting from Philadelphia"
+// 2. No Home Location -> "Hi. I am Andrew Mead."
 
-const me = new Student("David Rytell", 50, "Computer Science");
-const other = new Student();
+class Traveler extends Person {
+    constructor(name, age, homeLocation) {
+        super(name, age); //Calls parent class constructor function
+        this.homeLocation = homeLocation;
+    }
+
+    getGreeting() {
+        //We are overriding this method that is in the parent class
+        let greeting = super.getGreeting();
+
+        if(this.homeLocation) {
+            greeting = greeting += ` I'm visiting from ${this.homeLocation}.`
+        }
+        
+        return greeting;
+    }
+}
 
 
+const me = new Traveler("David Rytell", 50, "San Diego");
+const other = new Traveler(undefined, undefined, "Nowhere");
 
 //
-console.log(me.getDescription());
-console.log(other.getDescription());
+console.log(me.getGreeting());
+console.log(other.getGreeting());
