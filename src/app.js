@@ -19,11 +19,44 @@ class Action extends React.Component {
     }
 }
 
+
+// Challenge
+// Options class will contain a list of all the available options
+// Options -> render static text - "Options component here"
+
+class Options extends React.Component {
+    render() {
+        return (
+            <div>
+                <p>Options component here</p>
+            </div>
+        );
+    }
+}
+
+// Add Option Component - will have our form
+// AddOption -> static text - AddOption component here
+
+class AddOption extends React.Component {
+    render() {
+        return (
+            <div>
+                <p>AddOption component here</p>
+            </div>
+        );
+    }
+}
+
+
 const jsx = (
     <div>
         <Header />
         <Action />
+        <Options />
+        <AddOption />
     </div>
 );
+
+
 
 ReactDOM.render(jsx, document.getElementById("app"));
