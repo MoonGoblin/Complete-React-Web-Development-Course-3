@@ -78,11 +78,27 @@ class Option extends React.Component {
     }
 }
 
+// 1. Setup the form with text input and submit button
+// 2. Wire up onSubmit
+// 3. Define method - handleAddOption -> fetch the value typed -> if value, then alert
+
 class AddOption extends React.Component {
+    handleAddOption(theValue) {
+        theValue.preventDefault();
+        const option = theValue.target.elements.option.value.trim();
+
+        if (option) {        
+            alert("You did it!!");
+        }
+    }
+
     render() {
         return (
             <div>
-                <p>AddOption component here</p>
+                <form onSubmit={this.handleAddOption}>
+                    <input name="option" type="text" />
+                    <button>Add Option</button>
+                </form>
             </div>
         );
     }
