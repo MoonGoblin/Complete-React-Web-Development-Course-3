@@ -30,25 +30,34 @@ class Header extends React.Component {
 }
 
 class Action extends React.Component {
+    handlePick() {
+        alert("Here's handlePick!");
+
+    }
+
     render() {
         return (
             <div>
-                <button>What should I do?</button>
+                <button onClick={this.handlePick}>What should I do?</button>
             </div>
         );
     }
 }
 
-// Chalenge
-// Setup options prop for Options component
-// Render the length of the array
-// Render new p tag for each option (set text, set key)
+// Add Remove All button
+// Setup handleRemoveAll -> alert some message
+// setup onClick to fire the method
+
 
 class Options extends React.Component {
+    handleRemoveAll() {
+        alert("You just triggered the Remove All button!");
+    }
+    
     render() {
-
         return (
             <div>
+                <button onClick={this.handleRemoveAll}>Remove All</button>
                 <p>Options component here. The length is {this.props.options.length}</p>
                 <Option />
                 {
@@ -58,7 +67,6 @@ class Options extends React.Component {
         );
     }
 }
-
 
 class Option extends React.Component {
     render() {
@@ -79,9 +87,6 @@ class AddOption extends React.Component {
         );
     }
 }
-
-
-
 
 
 ReactDOM.render(<IndecisionApp />, document.getElementById("app"));
