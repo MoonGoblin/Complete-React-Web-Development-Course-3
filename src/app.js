@@ -1,18 +1,3 @@
-const obj = {
-    name: "Vikram",
-    getName() {
-        return this.name;
-    }
-};
-
-console.log(obj.getName());
-
-const getName = obj.getName.bind(obj);
-
-console.log(getName());
-
-//google "mdn bind" for more information
-
 class IndecisionApp extends React.Component {
     render() {
         const title = "Indecision";
@@ -65,8 +50,14 @@ class Action extends React.Component {
 
 
 class Options extends React.Component {
+    constructor(props) {
+        //props get passed into constructor functions in Reactx
+        super(props);
+        this.handleRemoveAll = this.handleRemoveAll.bind(this); //this will do the this binding for whereever we call this method
+    }
+
     handleRemoveAll() {
-        alert("You just triggered the Remove All button!");
+        console.log(this.props.options);
     }
     
     render() {
