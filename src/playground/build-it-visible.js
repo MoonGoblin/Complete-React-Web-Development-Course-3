@@ -1,39 +1,37 @@
-console.log("Here I am!");
+// VisibilityToggle component - define three methods: render, 
+// define constructor (bind methods and set up default state)
+// method to handle on click handleToggleVisibility
+// Single piece of state: visibility -> false, true
+// Try to work through issues and refer back to counter example project
 
 
-const appRoot = document.getElementById("app");
+class VisibilityToggle extends React.Component {
+    constructor(props) {
+        super(props);
+        this.handleToggleVisibility = this.handleToggleVisibility.bind(this);
+        this.state = {
+            visibility: true
+        };
+    }
 
-let visibility = false;
+    handleToggleVisibility() {
+        this.setState((prevState) => {
+            return {
+                visibility: !prevState.visibility
+            };
+        });
+    }
 
-const changeIt = () => {
-   
-    visibility = !visibility;
-    
-    // if (visibility == true) {
-    //     visibility = false;
-    // } else
-    // {
-    //     visibility = true;
-    // }
-    renderMe();
+
+    render() {
+        return (
+            <div>
+                <h1>Visibility Toggle</h1>
+                <button onClick={this.handleToggleVisibility}>{this.state.visibility ? "Hide details" : "Show details"}</button>
+                {this.state.visibility && (<p>Here is the hidden content!!</p>)}                  
+            </div>
+        );
+    }
 }
 
-
-const renderMe = () => {
-    //JSX - JavaScript XML - a JavaScript syntax "extension" provided by REACT
-    const template = (
-        <div>
-            <h1>Visibility Toggle</h1>
-            <button onClick={changeIt}>{visibility ? "Hide details" : "Show details"}</button>
-            <p>{visibility && (<p>Here is the hidden content!!</p>)}</p>          
-        </div>
-    );
-    
-    ReactDOM.render(template, appRoot);
-};
-
-renderMe();
-
-
-
-
+ReactDOM.render(<VisibilityToggle />, document.getElementById('app'));
