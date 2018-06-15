@@ -3,16 +3,10 @@ class IndecisionApp extends React.Component {
         super(props);
         this.handleDeleteOptions = this.handleDeleteOptions.bind(this);
         this.handlePick = this.handlePick.bind(this);
+        this.handleAddOption = this.handleAddOption.bind(this);
         this.state = {
-            options: ["Thing one", "Thing two", "Thing three"]
+            options: []
         };
-
-    }
-
-    handlePick() {
-        const randomNum = Math.floor(Math.random() * this.state.options.length);
-        const option = this.state.options[randomNum];
-        alert(option);
     }
 
     handleDeleteOptions() {
@@ -23,13 +17,25 @@ class IndecisionApp extends React.Component {
         });
     }
 
-    // Challenge
-    // handlePick - pass down to Action and setup onClick - bind here
-    // it will randomly pick an option and alert it. (Reuse the onMakeDecision method 
-    // in jsx-indecision.js file)
-    // Down below you can remove the method handlePick which we won't be using anymore.
-    // You should be able to click on "What should I do" you should be getting an
-    // alert with the actual randomly chosen option text.
+    handlePick() {
+        const randomNum = Math.floor(Math.random() * this.state.options.length);
+        const option = this.state.options[randomNum];
+        alert(option);
+    }
+
+    handleAddOption(option) {
+        if (!option) {
+            return "Enter valid value to add item";
+        } else if (this.state.options.indexOf(option) > -1) {
+            return "This option already exists";
+        }
+
+        this.setState((prevState) => {
+            return {
+                options: prevState.options.concat(option)
+            };
+        });
+    }
     
     render() {
         const title = "Indecision";
@@ -46,7 +52,9 @@ class IndecisionApp extends React.Component {
                     options={this.state.options} 
                     handleDeleteOptions={this.handleDeleteOptions}
                 />
-                <AddOption />
+                <AddOption 
+                    handleAddOption={this.handleAddOption}
+                />
             </div>
         );
     }
@@ -108,18 +116,31 @@ class Option extends React.Component {
 
 
 class AddOption extends React.Component {
+    constructor(props) {
+        super(props);
+        this.handleAddOption = this.handleAddOption.bind(this);
+        this.state = {
+            error: undefined
+        };
+    }
+
     handleAddOption(theValue) {
         theValue.preventDefault();
         const option = theValue.target.elements.option.value.trim();
+        const error = this.props.handleAddOption(option);
 
-        if (option) {        
-            alert("You did it!!");
-        }
+        this.setState(() => {
+            return {
+                //error: error
+                error //this is the same thing in shorthand
+            }
+        });
     }
 
     render() {
         return (
             <div>
+                {this.state.error && <p>{this.state.error}</p>}
                 <form onSubmit={this.handleAddOption}>
                     <input name="option" type="text" />
                     <button>Add Option</button>
@@ -128,6 +149,5 @@ class AddOption extends React.Component {
         );
     }
 }
-
 
 ReactDOM.render(<IndecisionApp />, document.getElementById("app"));
