@@ -1,3 +1,6 @@
+// stateless functional component
+// often just concerned with presentation (and not state)
+
 class IndecisionApp extends React.Component {
     constructor(props) {
         super(props);
@@ -87,8 +90,6 @@ class Action extends React.Component {
     }
 }
 
-
-
 class Options extends React.Component {
     render() {
         return (
@@ -150,4 +151,14 @@ class AddOption extends React.Component {
     }
 }
 
-ReactDOM.render(<IndecisionApp />, document.getElementById("app"));
+// First stateless functional component
+const User = (props) => {
+    return (
+        <div>
+            <p>Name: {props.name}</p>
+            <p>Age: {props.age}</p>
+        </div>
+    )
+};
+
+ReactDOM.render(<User name="Andrew" age={26}/>, document.getElementById("app"));
