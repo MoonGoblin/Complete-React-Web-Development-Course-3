@@ -1,6 +1,3 @@
-// stateless functional component
-// often just concerned with presentation (and not state)
-
 class IndecisionApp extends React.Component {
     constructor(props) {
         super(props);
@@ -11,6 +8,19 @@ class IndecisionApp extends React.Component {
         this.state = {
             options: props.options
         };
+    }
+
+    componentDidMount() {
+        console.log("componentDidMount");
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        console.log("componentDidUpdate");
+    }
+
+    componentWillUnmount() {
+        //not used much
+        console.log("componentWillUnmount"); // Won't really see it.
     }
 
     handleDeleteOptions() {
