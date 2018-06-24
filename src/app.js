@@ -10,12 +10,27 @@ class IndecisionApp extends React.Component {
         };
     }
 
+    // lifecycle methods that fire at certain points in a
+    // components life cycle. Handy.  Only available in class-based
+    // components. 
     componentDidMount() {
-        console.log("componentDidMount");
+        try {
+            const json = localStorage.getItem('options');
+            const options = JSON.parse(json);
+     
+             if (options) {
+                 this.setState(() => ({ options: options}));
+             } //if throws error, it will catch below
+        } catch (e) {
+            //If error, do nothing at all in this case.
+        }
     }
 
     componentDidUpdate(prevProps, prevState) {
-        console.log("componentDidUpdate");
+        if (prevState.options.length !== this.state.options.length) {
+            const json = JSON.stringify(this.state.options);
+            localStorage.setItem('options', json);
+        }
     }
 
     componentWillUnmount() {
@@ -110,6 +125,7 @@ const Options = (props) => {
     return (
         <div>
             <button onClick={props.handleDeleteOptions}>Remove All</button>
+            {props.options.length === 0 && <p>Please add an option to get started!</p>}
             <p>Options component here. The length is {props.options.length}</p>
             {
                 props.options.map((option) => (
@@ -153,6 +169,10 @@ class AddOption extends React.Component {
         const option = theValue.target.elements.option.value.trim();
         const error = this.props.handleAddOption(option);
         this.setState(() => ({ error }));
+
+        if (!error) {
+            theValue.target.elements.option.value = ""; //wipes input when we get valid data
+        }
     }
 
     render() {
