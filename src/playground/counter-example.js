@@ -9,6 +9,27 @@ class Counter extends React.Component {
         };
     }
 
+    // lifecycle methods that fire at certain points in a
+    // components life cycle. Handy.  Only available in class-based
+    // components. 
+    componentDidMount() {
+        const stringCount = localStorage.getItem('count');
+        const count = parseInt(stringCount, 10);
+
+        if (!isNaN(count)) {
+            this.setState(() => ({ count: count}));
+        }
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        //console.log("componentDidUpdate");
+                        
+        if (prevState.count !== this.state.count) {
+            const json = JSON.stringify(this.state.count);
+            localStorage.setItem('count', json);
+        }
+    }
+
     handleAddOne() {
         this.setState((prevState) => {
             return {
