@@ -14,5 +14,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-const template = React.createElement('p', {}, 'testing 123'); // (Not using babel yet - no support for JSX yet) We'll fix this soon - we just need to render to screen
+//const template = React.createElement('p', {}, 'testing 123'); // (Not using babel yet - no support for JSX yet) We'll fix this soon - we just need to render to screen
+const template = <p>testing again, 123!! THIS IS JSX!</p>;
 ReactDOM.render(template, document.getElementById('app'));

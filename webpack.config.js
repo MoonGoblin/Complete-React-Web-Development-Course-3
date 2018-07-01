@@ -12,6 +12,13 @@ module.exports = {
     output: {
         path: path.join(__dirname, "public"),
         filename: "bundle.js"
+    }, 
+    module: {
+        rules: [{
+            loader: 'babel-loader',
+            test: /\.js$/,
+            exclude: /node_modules/
+        }]
     }
 };
 // path is an absolute path!!!
@@ -25,8 +32,23 @@ module.exports = {
 // run this in this file: console.log(path.join(__dirname, "public"));
 // from terminal its node webpack.config.js
 
-
-
 // webpack documentation is a great resource
 // webbpack.js.org
 // see documentation
+
+// Using Webpack Loader:
+// A slightly more sophisticate way to use webpack
+// using a "loader" - let's you customize webpack more
+// like when it sees a js file it can do something - like 
+// run it through babel. Converting ES6 to ES5 or getting
+// jxs into regular old javascript. Note we will also use this
+// with CSS coming up.
+
+// install some local dependencies in terminal
+// terminal: yarn add babel-core@6.25.0 which allows you to use
+// babel from tools like webpack.
+// Also, yarn add babel-loader@7.1.1
+
+// find module documentation at webpack.js.org documentation - like module.rules
+// which is how you define your loaders.
+
