@@ -6,27 +6,13 @@
 // webpack will figure out the relative path of where its from if 
 // you name the area in node_modules exactly
 
-import validator from "validator";
+// google npm react - we will want this
+// google npm react-dom - we also want this so we can render our components to the browser
+// In terminal:
+// yarn add react@16.0.0 react-dom@16.0.0
 
-// refer to the documentation for all the cool stuf that this give you access to
+import React from "react";
+import ReactDOM from "react-dom";
 
-console.log(validator.isEmail("test"));
-console.log(validator.isEmail("test@gmail.com"));
-
-
-//import "./utils.js";
-// import subtract, { square, add } from "./utils.js"; // Not object but import syntax
-// import isSenior, { isAdult, canDrink } from "./person.js";
-
-// console.log("app.js is running!!!!!");
-// console.log(square(4));
-// console.log(add(100, 23));
-// console.log(subtract(100, 75));
-
-// console.log("Is adult? " + isAdult(19));
-// console.log("Can drink? " + canDrink(19));
-// console.log("isSenior = " + isSenior(64)); //returns true or false - 65 is first year of senior
-// Set up the default export and function
-// Grab the default and call it
-
-// This import/export stuff is allowed by webpack
+const template = React.createElement('p', {}, 'testing 123'); // (Not using babel yet - no support for JSX yet) We'll fix this soon - we just need to render to screen
+ReactDOM.render(template, document.getElementById('app'));
