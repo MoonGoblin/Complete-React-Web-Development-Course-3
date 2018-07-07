@@ -12,6 +12,11 @@ ReactDOM.render(<IndecisionApp />, document.getElementById("app"));
 class OldSyntax {
     constructor() {
         this.name = "Mike";
+        this.getGreeting = this.getGreeting.bind(this);
+    }
+
+    getGreeting() {
+        return `Hi. My name is ${this.name}.`;
     }
 }
 
@@ -26,9 +31,15 @@ console.log(oldSyntax);
 // so we won't be able to completely take the constructor function
 // away there yet.
 
+// Now below we are working on fixing the binding problem:
+
 class NewSyntax {
     name = "Jen";
+    getGreeting = () => {
+        return `Hi. My name is ${this.name}.`;
+    }
 }
 
 const newSyntax = new NewSyntax();
-console.log(newSyntax);
+const newGetGreeting = newSyntax.getGreeting;
+console.log(newGetGreeting());
