@@ -19,7 +19,10 @@ module.exports = {
             test: /\.js$/,
             exclude: /node_modules/
         }]
-    }
+    },
+    // See webpack.js.org documentation - this is the source map that helps us 
+    // find the right line in our browser debuging tools!
+    devtool: 'cheap-module-eval-source-map'
 };
 // path is an absolute path!!!
 // variable makes easier!!
