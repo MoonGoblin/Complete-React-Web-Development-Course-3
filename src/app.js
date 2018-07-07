@@ -21,7 +21,7 @@ class OldSyntax {
 }
 
 const oldSyntax = new OldSyntax();
-console.log(oldSyntax);
+console.log(oldSyntax.getGreeting());
 
 // ------------
 // New syntax with babel plug-in eliminates the 

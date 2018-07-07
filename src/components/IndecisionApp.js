@@ -4,17 +4,51 @@ import Header from "./Header";
 import Action from "./Action";
 import Options from "./Options";
 
+// Challenge
+// pull the state out of the constructor
+// convert all 4 event handlers to class properties (arrow functions)
+// delete the constructor completely
+// put things in order ...
+// start with class properties and end with the methods (event handlers should be moved up top)
+
 export default class IndecisionApp extends React.Component {
-    constructor(props) {
-        super(props);
-        this.handleDeleteOptions = this.handleDeleteOptions.bind(this);
-        this.handlePick = this.handlePick.bind(this);
-        this.handleAddOption = this.handleAddOption.bind(this);
-        this.handleDeleteOption = this.handleDeleteOption.bind(this);
-        this.state = {
-            options: [] // don't need props.options since using localStorage
-        };
+    state = {
+        options: []
     }
+
+
+    handleDeleteOptions = () => {
+        // making less verbose
+        this.setState(() => ({ options: [] }));
+   };
+
+   handleDeleteOption = (optionToRemove) => {
+        //console.log("hdo", option);
+        this.setState((prevState) => ({
+            options: prevState.options.filter((option) => {
+                return optionToRemove !== option; //filters out the option to Delete
+            })
+        }));
+   };
+
+    handlePick = () => {
+        const randomNum = Math.floor(Math.random() * this.state.options.length);
+        const option = this.state.options[randomNum];
+        alert(option);
+    };
+
+    handleAddOption = (option) => {
+        if (!option) {
+            return "Enter valid value to add item";
+        } else if (this.state.options.indexOf(option) > -1) {
+            return "This option already exists";
+        }
+
+        this.setState((prevState) => ({
+            options: prevState.options.concat(option)
+        }));
+    };
+
 
     componentDidMount() {
         try {
@@ -41,37 +75,6 @@ export default class IndecisionApp extends React.Component {
         console.log("componentWillUnmount"); // Won't really see it.
     }
 
-    handleDeleteOptions() {
-        // making less verbose
-        this.setState(() => ({ options: [] }));
-   }
-
-   handleDeleteOption(optionToRemove) {
-        //console.log("hdo", option);
-        this.setState((prevState) => ({
-            options: prevState.options.filter((option) => {
-                return optionToRemove !== option; //filters out the option to Delete
-            })
-        }));
-   }
-
-    handlePick() {
-        const randomNum = Math.floor(Math.random() * this.state.options.length);
-        const option = this.state.options[randomNum];
-        alert(option);
-    }
-
-    handleAddOption(option) {
-        if (!option) {
-            return "Enter valid value to add item";
-        } else if (this.state.options.indexOf(option) > -1) {
-            return "This option already exists";
-        }
-
-        this.setState((prevState) => ({
-            options: prevState.options.concat(option)
-        }));
-    }
     
     render() {
         const subtitle = "Put your life in the hands of a computer";

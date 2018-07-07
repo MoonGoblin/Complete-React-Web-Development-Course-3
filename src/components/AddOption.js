@@ -16,7 +16,7 @@ export default class AddOption extends React.Component {
         if (!error) {
             theValue.target.elements.option.value = ""; //wipes input when we get valid data
         }
-    }
+    };
 
     render() {
         return (
