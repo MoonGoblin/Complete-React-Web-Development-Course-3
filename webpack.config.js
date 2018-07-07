@@ -22,7 +22,11 @@ module.exports = {
     },
     // See webpack.js.org documentation - this is the source map that helps us 
     // find the right line in our browser debuging tools!
-    devtool: 'cheap-module-eval-source-map'
+    devtool: 'cheap-module-eval-source-map',
+    // dev Server tool
+    devServer: {
+        contentBase: path.join(__dirname, "public")
+    }
 };
 // path is an absolute path!!!
 // variable makes easier!!
