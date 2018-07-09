@@ -17,15 +17,17 @@ const Layout = (props) => {
     );
 }
 
-const template = (
-    <div>
-        <h1>Page Title</h1>
-        <p>This is my page</p>
-    </div>
-);
 
-ReactDOM.render(<Layout><p>This is inline</p></Layout>, document.getElementById("app"));
-
+ReactDOM.render((
+    <Layout>
+        <div>
+            <h1>Page Title</h1>
+            <p>This is my page</p>
+        </div>
+    </Layout>
+), document.getElementById("app"));
+// makes it clear that this is a child of layout
+// We need to use this method when using third party components
 
 // *********************************************
 
