@@ -3,6 +3,7 @@ import AddOption from "./AddOption"; // Webpack doesn't need you to say AddOptio
 import Header from "./Header";
 import Action from "./Action";
 import Options from "./Options";
+import OptionModal from './OptionModal';
 
 // Challenge
 // pull the state out of the constructor
@@ -13,7 +14,8 @@ import Options from "./Options";
 
 export default class IndecisionApp extends React.Component {
     state = {
-        options: []
+        options: [],
+        selectedOption: undefined
     }
 
 
@@ -34,7 +36,7 @@ export default class IndecisionApp extends React.Component {
     handlePick = () => {
         const randomNum = Math.floor(Math.random() * this.state.options.length);
         const option = this.state.options[randomNum];
-        alert(option);
+        this.setState(() => ( {selectedOption: option} )); // Using a string here - will make modal "true"
     };
 
     handleAddOption = (option) => {
@@ -93,6 +95,9 @@ export default class IndecisionApp extends React.Component {
                 />
                 <AddOption 
                     handleAddOption={this.handleAddOption}
+                />
+                <OptionModal 
+                    selectedOption={this.state.selectedOption}
                 />
             </div>
         );
