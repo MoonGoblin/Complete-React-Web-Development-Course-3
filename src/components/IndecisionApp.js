@@ -33,6 +33,10 @@ export default class IndecisionApp extends React.Component {
         }));
    };
 
+   handleClearSelectedOption = () => {
+        this.setState(() => ({ selectedOption: undefined }));
+   };
+
     handlePick = () => {
         const randomNum = Math.floor(Math.random() * this.state.options.length);
         const option = this.state.options[randomNum];
@@ -50,7 +54,6 @@ export default class IndecisionApp extends React.Component {
             options: prevState.options.concat(option)
         }));
     };
-
 
     componentDidMount() {
         try {
@@ -98,6 +101,7 @@ export default class IndecisionApp extends React.Component {
                 />
                 <OptionModal 
                     selectedOption={this.state.selectedOption}
+                    handleClearSelectedOption={this.handleClearSelectedOption}
                 />
             </div>
         );
