@@ -1,0 +1,40 @@
+// Widget Overall
+.widget {
+    background: $light-blue;
+    margin-bottom: $xl-size;
+}
+
+// Challenge
+// create a widget element selector (message) - use it on the p tag
+// off-white color
+// no margin
+// l-size padding on all sides
+// center the text using - text-align: center;
+// set the bottom border to a 1px solid border - with lighted version of $light-blue 10%
+
+.widget__message {
+    color: $off-white;
+    margin: 0;
+    padding: $l-size;
+    text-align: center;
+    border-bottom: 1px solid lighten($light-blue, 10%);
+}
+
+// Widget Header
+.widget-header {
+    background-color: $blue;
+    color: $off-white;
+    // using flex-box to style - makes easy
+    display: flex;
+    justify-content: space-between;
+    padding: $m-size;
+}
+
+// Challenge
+// setup an element selector for widget-header (call it title)
+// set margin = 0
+// use the class so the h3 has the margin reset
+
+.widget-header__title {
+    margin: 0;
+}
